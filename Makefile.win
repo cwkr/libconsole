@@ -5,16 +5,16 @@ LINK=link
 all: demo.exe demo2.exe
 
 demo.exe: demo.obj console.obj
-    $(LINK) $(LINKFLAGS) /out:demo.exe demo.obj console.obj kernel32.lib
-    
+	$(LINK) $(LINKFLAGS) /out:demo.exe demo.obj console.obj kernel32.lib
+
 demo2.exe: demo2.obj console.obj
-    $(LINK) $(LINKFLAGS) /out:demo2.exe demo2.obj console.obj kernel32.lib
-    
+	$(LINK) $(LINKFLAGS) /out:demo2.exe demo2.obj console.obj kernel32.lib
+
 .c.obj:
-    $(CC) /c /TC $(CCFLAGS) $<
-    
+	$(CC) /c /TC $(CCFLAGS) $<
+
 .cpp.obj:
-    $(CC) /c $(CCFLAGS) $<
+	$(CC) /c $(CCFLAGS) $<
 
 clean:
-    -@del *.obj *.exe *.res *.dll *.lib *.map *.pdb
+	-@del *.obj *.exe *.res *.dll *.lib *.map *.pdb
