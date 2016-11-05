@@ -1,3 +1,11 @@
+/* console.c -- console module
+ *
+ * Copyright (C) 2016 Christian Winkler
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE file for details.
+ */
+
 #include <stdio.h>
 #include "console.h"
 
