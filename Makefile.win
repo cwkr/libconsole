@@ -1,0 +1,12 @@
+CCFLAGS=/nologo /MD /TC /Ot /fp:precise /W3 /Gd /D_CRT_SECURE_NO_WARNINGS
+LINKFLAGS=/nologo /subsystem:console
+LINK=link
+
+all: demo.exe
+
+demo.exe: demo.c console.c console.h
+    $(CC) /c $(CCFLAGS) demo.c console.c
+    $(LINK) $(LINKFLAGS) /out:demo.exe demo.obj console.obj kernel32.lib
+
+clean:
+    -@del *.obj *.exe *.res *.dll *.lib *.map *.pdb
