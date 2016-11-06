@@ -53,9 +53,18 @@ static void win_set_attributes(int fg, int bg) {
     SetConsoleTextAttribute(hConsole, info.wAttributes);
 }
 
+static void win_set_cursor_position(int x, int y) {
+	COORD pos;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	
+	pos.X = x;
+	pos.Y = y;
+	SetConsoleCursorPosition(hConsole, pos);
+}
+
 static void win_clear_console() {
     WORD defaultAttributes;
-    COORD topLeft = { 0, 0 };
+	COORD topLeft = { 0, 0 };
     DWORD written;
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO info;
@@ -68,7 +77,7 @@ static void win_clear_console() {
 
     FillConsoleOutputCharacterA(hConsole, ' ', info.dwSize.X * info.dwSize.Y, topLeft, &written);
     FillConsoleOutputAttribute(hConsole, info.wAttributes, info.dwSize.X * info.dwSize.Y, topLeft, &written);
-    SetConsoleCursorPosition(hConsole, topLeft);
+    win_set_cursor_position(topLeft.X, topLeft.Y);
 }
 
 #elif defined(__APPLE__) || defined(__unix__) || defined(__unix)
@@ -341,5 +350,15 @@ void setbgcolor(enum Color color) {
 #endif
             break;
         }
+    }
+}
+
+void setcurpos(int x, int y) {
+    if(is_terminal(stdout)) {
+#if defined(_WIN32)
+        win_set_cursor_position(x, y);
+#else
+        fprintf(stdout, "\033[%d;%dH", y+1, x+1);
+#endif
     }
 }

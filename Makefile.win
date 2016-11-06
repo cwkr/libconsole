@@ -14,7 +14,7 @@ demo2.exe: demo2.obj console.obj
 	$(CC) /c /TC $(CCFLAGS) $<
 
 .cpp.obj:
-	$(CC) /c $(CCFLAGS) $<
+	$(CC) /c /EHsc $(CCFLAGS) $<
 
 clean:
 	-@del *.obj *.exe *.res *.dll *.lib *.map *.pdb

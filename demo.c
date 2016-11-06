@@ -81,6 +81,7 @@ int main() {
     setbgcolor(NAVY);
     setcolor(YELLOW);
     clear();
+	setcurpos(5, 5);
     printf("Hello World!");
     getchar();
     reset();

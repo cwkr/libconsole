@@ -40,6 +40,8 @@ void reset();
 void setcolor(enum Color color);
 /* set background color */
 void setbgcolor(enum Color color);
+/* set cursor position */
+void setcurpos(int x, int y);
 
 #ifdef __cplusplus
 }
