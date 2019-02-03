@@ -1,0 +1,12 @@
+*.o
+*.obj
+*.map
+*.exp
+*.gch
+*.pch
+*.lib
+*.a
+*.dll
+*.so
+*.exe
+*.pdb
